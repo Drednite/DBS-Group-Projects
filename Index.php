@@ -20,7 +20,8 @@
 		}
 
 		// Define the SQL query to run (replace these values as well)
-		$sql = "SELECT * FROM Participant LEFT OUTER JOIN Member ON Participant.participant_id = Member.member_id;";
+		$sql = "SELECT first_name, last_name, street_address, city, state, email, voice_part, youth_form, arrangement 
+				FROM Participant LEFT OUTER JOIN Member ON Participant.participant_id = Member.member_id;";
 
 		// Run the SQL query
 		$result = pg_query($dbhost, $sql);
@@ -31,7 +32,18 @@
 			die("Error in query: ".pg_last_error());
 		}
 
-		echo "<table>";
+		echo "<table>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Street Address</th>
+					<th>City</th>
+					<th>State</th>
+					<th>Email</th>
+					<th>Voice Part</th>
+					<th>Youth Form</th>
+					<th>Arrangement</th>
+				</tr>";
 		// Iterate through each row of the result 
 		while ($row = pg_fetch_array($result))
 		{
