@@ -31,15 +31,21 @@
 			die("Error in query: ".pg_last_error());
 		}
 
+		echo "<table>";
 		// Iterate through each row of the result 
 		while ($row = pg_fetch_array($result))
 		{
 			$length = count($row);
-			for($i = 0; $i < $length; $i++)
+			echo "<tr>";
+			for($i = 0; $i < $length; $i++){
 			// Write HTML to the page, replace this with whatever you wish to do with the data
+				echo "<td>";
 				echo $row[$i]."&emsp;&emsp;";
-			echo "<br>";
+				echo "</td>";
+			}
+			echo "</tr>";
 		}
+		echo "</table>";
 
 		// Free the result from memory
 		pg_free_result($result);
