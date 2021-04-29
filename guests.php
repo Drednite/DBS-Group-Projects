@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Guest Info</title>
+		<title>Guests</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
@@ -8,14 +8,10 @@
 		<thead>
 			<tr>
 				<th>Participant Id</th>
-				<th>Name</th>
+				<th>Last Name</th>
+				<th>First Name</th>
+				<th>Preferred Name</th>
 				<th>Voice Part</th>
-				<th>Address</th>
-				<th>Phone</th>
-				<th>Email</th>
-				<th>Facebook</th>
-				<th>Birthdate</th>
-				<th>Spouse</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,15 +30,12 @@
 			{
 				die("Error: ".pg_last_error());
 			}
-			
-			$guest = $_GET['guest'];
 
 			// Define the SQL query to run (replace these values as well)
-			$sql = "SELECT * FROM Participant WHERE Participant.participant_id = $1;";
+			$sql = "SELECT * FROM Participant WHERE NOT EXISTS (SELECT * FROM Member WHERE Member.participant_id = Participant.participant_id);";
 
 			// Run the SQL query
-			$result = pg_prepare($dbhost, "query", $sql);
-			$result = pg_execute($dbhost, "query", array($guest));
+			$result = pg_query($dbhost, $sql);
 
 			// If the $result variable is not defined, there was an error in the query
 			if (!$result)
@@ -54,15 +47,11 @@
 			while ($row = pg_fetch_array($result))
 			{
 			echo "<tr>";
-				echo "<td>" . $row['participant_id'] . "</td>";
-				echo "<td>" . $row['first_name'] . " \"" . $row['preferred_name'] . "\" " . $row['last_name'] . "</td>";
+				echo "<td><a href=\"guestInfo.php?guest=" . $row['participant_id'] . "\">" . $row['participant_id'] . "</a></td>";
+				echo "<td>" . $row['last_name'] . "</td>";
+				echo "<td>" . $row['first_name'] . "</td>";
+				echo "<td>" . $row['preferred_name'] . "</td>";
 				echo "<td>" . $row['voice_part'] . "</td>";
-				echo "<td>" . $row['street_address'] . "<br>" . $row['city'] . ", " . $row['state'] . " " . $row['zip'] . "</td>";
-				echo "<td>Home: " . $row['home_phone'] . "<br>Cell: " . $row['cell_phone'] . "<br>Work: " . $row['work_phone'] . "</td>";
-				echo "<td>" . $row['email'] . "</td>";
-				echo "<td>" . $row['on_facebook'] . "</td>";
-				echo "<td>" . $row['birthdate'] . "</td>";
-				echo "<td>" . $row['spouse_first'] . " \"" . $row['spouse_preferred'] . "\" " . $row['spouse_last'] . "</td>";
 			echo "</tr>";
 			}
 
