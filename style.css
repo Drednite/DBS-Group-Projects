@@ -3,6 +3,10 @@ table, td, th{
     text-align: right;
 }
 
+th{
+    background-color: darkgray;
+}
+
 tr{
     border-bottom: 1px solid black;
 }
