@@ -3,6 +3,15 @@
 		<title>Members</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
+	<form name="sort" method="get">
+		<label for="sort"></label>
+		<select name="sort">
+			<option value="first">First Name</option>
+			<option value="last">Last Name</option>
+			<option value="id">ID</option>
+		</select>
+		<input type="submit" value="Sort">
+	</form>
 	<body>
 		<table>
 		<thead>
@@ -30,9 +39,26 @@
 			{
 				die("Error: ".pg_last_error());
 			}
+			
+			$sort = $_GET['sort'];
+			$filter = "";
+
+			switch($sort) {
+				case "first":
+					$filter = "ORDER BY Participant.first_name";
+					break;
+				case "last":
+					$filter = "ORDER BY Participant.last_name";
+					break;
+				case "id":
+					$filter = "ORDER BY Participant.participant_id";
+					break;
+				default:
+					break;
+			}
 
 			// Define the SQL query to run (replace these values as well)
-			$sql = "SELECT * FROM Participant INNER JOIN Member ON Participant.participant_id = Member.participant_id;";
+			$sql = "SELECT * FROM Participant INNER JOIN Member ON Participant.participant_id = Member.participant_id " . $filter . ";";
 
 			// Run the SQL query
 			$result = pg_query($dbhost, $sql);
