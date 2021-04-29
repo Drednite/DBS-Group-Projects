@@ -3,6 +3,14 @@
 		<title>Member Sales</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
+	<form name="sort" method="get">
+		<label for="sort"></label>
+		<select name="sort">
+			<option value="performance">Performance</option>
+			<option value="name">Member Name</option>
+		</select>
+		<input type="submit" value="Sort">
+	</form>
 	<body>
 		<table>
 		<thead>
@@ -31,9 +39,23 @@
 			{
 				die("Error: ".pg_last_error());
 			}
+			
+			$sort = $_GET['sort'];
+			$filter = "";
+
+			switch($sort) {
+				case "performance":
+					$filter = "ORDER BY Performance.name";
+					break;
+				case "name":
+					$filter = "ORDER BY Participant.last_name";
+					break;
+				default:
+					break;
+			}
 
 			// Define the SQL query to run (replace these values as well)
-			$sql = "SELECT * FROM Performance INNER JOIN Member_Ticket_Sales ON Performance.performance_id = Member_Ticket_Sales.performance_id INNER JOIN Member ON Member_Ticket_Sales.member_id = Member.member_id INNER JOIN Participant ON Member.participant_id = Participant.participant_id;";
+			$sql = "SELECT * FROM Performance INNER JOIN Member_Ticket_Sales ON Performance.performance_id = Member_Ticket_Sales.performance_id INNER JOIN Member ON Member_Ticket_Sales.member_id = Member.member_id INNER JOIN Participant ON Member.participant_id = Participant.participant_id " . $filter . ";";
 
 			// Run the SQL query
 			$result = pg_query($dbhost, $sql);
