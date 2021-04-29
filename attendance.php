@@ -49,7 +49,7 @@
 			{
 			echo "<tr>";
 				echo "<td>" . date( "n/d/Y h:i:s A" , strtotime($row['attend_date']) ) . "</td>";
-				echo "<td><a href=\"http://students.cs.ndsu.nodak.edu/~christien.frank/memberInfo.php?member=" . $row['member_id'] . "\">" . $row['member_id'] . "</a></td>";
+				echo "<td><a href=\"memberInfo.php?member=" . $row['member_id'] . "\">" . $row['member_id'] . "</a></td>";
 				echo "<td>" . $row['last_name'] . "</td>";
 				echo "<td>" . $row['first_name'] . "</td>";
 				echo "<td>" . $row['preferred_name'] . "</td>";

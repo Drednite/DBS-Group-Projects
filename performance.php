@@ -1,17 +1,18 @@
 <html>
 	<head>
 		<title>Members</title>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<table>
 		<thead>
 			<tr>
-				<td>Performance Id</td>
-				<td>Name</td>
-				<td>Date</td>
-				<td>Venue</td>
-				<td>Guest Artists</td>
-				<td>Online Sales</td>
+				<th>Performance Id</th>
+				<th>Name</th>
+				<th>Date</th>
+				<th>Venue</th>
+				<th>Guest Artists</th>
+				<th>Online Sales</th>
 			</tr>
 		</thead>
 		<tbody>

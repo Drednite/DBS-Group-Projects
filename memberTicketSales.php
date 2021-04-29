@@ -49,7 +49,7 @@
 			{
 			echo "<tr>";
 				echo "<td>" . $row['performance_id'] . "<br>" . $row['name'] . "<br>" . date( "n/d/Y h:i:s A" , strtotime($row['performance_date']) ) . "</td>";
-				echo "<td><a href=\"http://students.cs.ndsu.nodak.edu/~christien.frank/memberInfo.php?member=" . $row['member_id'] . "\">" . $row['member_id'] . "</a><br>" . $row['first_name'] . " \"" . $row['preferred_name'] . "\" " . $row['last_name'] . "</td>";
+				echo "<td><a href=\"memberInfo.php?member=" . $row['member_id'] . "\">" . $row['member_id'] . "</a><br>" . $row['first_name'] . " \"" . $row['preferred_name'] . "\" " . $row['last_name'] . "</td>";
 				echo "<td>" . $row['tickets_given'] . "</td>";
 				echo "<td>" . $row['tickets_returned'] . "</td>";
 				echo "<td>Adult: " . $row['adult_sold'] . "<br>Youth/Student: " . $row['student_youth_sold'] . "</td>";

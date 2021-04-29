@@ -9,6 +9,6 @@
 		<form action="guests.php"><input type="submit" value="Guests"/></form>
 		<form action="attendance.php"><input type="submit" value="Attendance"/></form>
 		<form action="memberTicketSales.php"><input type="submit" value="Member Ticket Sales"/></form>
-		<form action="performances.php"><input type="submit" value="Performances"/></form>
+		<form action="performance.php"><input type="submit" value="Performances"/></form>
 	</body>
 </html>
