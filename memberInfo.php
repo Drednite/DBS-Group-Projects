@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>Member Info</title>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<table>

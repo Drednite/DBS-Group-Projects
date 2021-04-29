@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>Attendance</title>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<table>

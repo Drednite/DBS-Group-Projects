@@ -1,0 +1,12 @@
+table, td, th{
+    padding: 5px 10px 5px 10px;
+    text-align: right;
+}
+
+tr{
+    border-bottom: 1px solid black;
+}
+
+tr:nth-child(even){
+    background-color: gainsboro;
+}

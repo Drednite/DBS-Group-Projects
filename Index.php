@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>GPH Database</title>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<form action="roles.php"><input type="submit" value="Board Members"/></form>

@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>Guests</title>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<table>
