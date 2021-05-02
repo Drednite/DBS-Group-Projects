@@ -1,5 +1,4 @@
 <html>
-	<form action="admin.php"><input type="submit" value="Admin Home"/></form>
 	<head>
 		<title>Admin: Attendance</title>
 		<link rel="stylesheet" href="style.css">
@@ -113,5 +112,8 @@
 			?>
 		</tbody>
 		</table>
+		<form action="admin.php" method="post">
+			<input type="submit" style="color:white;background-color:blue" value="Admin Home"/>
+		</form>
 	</body>
 </html>
