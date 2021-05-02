@@ -3,7 +3,9 @@
 		<title>Attendance</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
-	<form name="sort" method="get">
+	<body>
+		<h2>Attendance Log</h2>
+		<form name="sort" method="get">
 		<label for="sort"></label>
 		<select name="sort">
 			<option value="first">First Name</option>
@@ -11,17 +13,16 @@
 			<option value="date">Date</option>
 		</select>
 		<input type="submit" value="Sort">
-	</form>
-	<body>
+		</form>
 		<table>
 		<thead>
 			<tr>
-				<th>Date</th>
-				<th>Member Id</th>
-				<th>Last Name</th>
-				<th>First Name</th>
-				<th>Preferred Name</th>
-				<th>Voice Part</th>
+				<td>Date</td>
+				<td>Member Id</td>
+				<td>Last Name</td>
+				<td>First Name</td>
+				<td>Preferred Name</td>
+				<td>Voice Part</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -40,7 +41,7 @@
 			{
 				die("Error: ".pg_last_error());
 			}
-			
+
 			$sort = $_GET['sort'];
 			$filter = "";
 
@@ -75,7 +76,7 @@
 			{
 			echo "<tr>";
 				echo "<td>" . date( "n/d/Y h:i:s A" , strtotime($row['attend_date']) ) . "</td>";
-				echo "<td><a href=\"memberInfo.php?member=" . $row['member_id'] . "\">" . $row['member_id'] . "</a></td>";
+				echo "<td><a href=\"http://students.cs.ndsu.nodak.edu/~christien.frank/memberInfo.php?member=" . $row['member_id'] . "\">" . $row['member_id'] . "</a></td>";
 				echo "<td>" . $row['last_name'] . "</td>";
 				echo "<td>" . $row['first_name'] . "</td>";
 				echo "<td>" . $row['preferred_name'] . "</td>";
