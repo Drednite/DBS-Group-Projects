@@ -3,6 +3,14 @@
 		<title>Guests</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
+	<form name="sort" method="get">
+		<label for="sort"></label>
+		<select name="sort">
+			<option value="first">First Name</option>
+			<option value="last">Last Name</option>
+		</select>
+		<input type="submit" value="Sort">
+	</form>
 	<body>
 		<table>
 		<thead>
@@ -30,9 +38,23 @@
 			{
 				die("Error: ".pg_last_error());
 			}
+			
+			$sort = $_GET['sort'];
+			$filter = "";
+
+			switch($sort) {
+				case "first":
+					$filter = "ORDER BY Participant.first_name";
+					break;
+				case "last":
+					$filter = "ORDER BY Participant.last_name";
+					break;
+				default:
+					break;
+			}
 
 			// Define the SQL query to run (replace these values as well)
-			$sql = "SELECT * FROM Participant WHERE NOT EXISTS (SELECT * FROM Member WHERE Member.participant_id = Participant.participant_id);";
+			$sql = "SELECT * FROM Participant WHERE NOT EXISTS (SELECT * FROM Member WHERE Member.participant_id = Participant.participant_id) " . $filter . ";";
 
 			// Run the SQL query
 			$result = pg_query($dbhost, $sql);

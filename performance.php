@@ -3,6 +3,15 @@
 		<title>Members</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
+	<form name="sort" method="get">
+		<label for="sort"></label>
+		<select name="sort">
+			<option value="performance">Performance</option>
+			<option value="date">Date</option>
+			<option value="id">Performance ID</option>
+		</select>
+		<input type="submit" value="Sort">
+	</form>
 	<body>
 		<table>
 		<thead>
@@ -31,9 +40,26 @@
 			{
 				die("Error: ".pg_last_error());
 			}
+			
+			$sort = $_GET['sort'];
+			$filter = "";
+
+			switch($sort) {
+				case "performance":
+					$filter = "ORDER BY Performance.name";
+					break;
+				case "date":
+					$filter = "ORDER BY Performance.performance_date";
+					break;
+				case "id":
+					$filter = "ORDER BY Performance.performance_id";
+					break;
+				default:
+					break;
+			}
 
 			// Define the SQL query to run (replace these values as well)
-			$sql = "SELECT * FROM Performance;";
+			$sql = "SELECT * FROM Performance " . $filter . ";";
 
 			// Run the SQL query
 			$result = pg_query($dbhost, $sql);
