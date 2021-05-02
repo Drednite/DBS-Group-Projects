@@ -1,18 +1,28 @@
 <html>
 	<head>
-		<title>Members</title>
+		<title>Performances</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<h2>Performances</h2>
+		<form name="sort" method="get">
+		<label for="sort"></label>
+		<select name="sort">
+			<option value="name">Name</option>
+			<option value="date">Date</option>
+			<option value="id">ID</option>
+		</select>
+		<input type="submit" value="Sort">
+		</form>
 		<table>
 		<thead>
 			<tr>
-				<th>Performance Id</th>
-				<th>Name</th>
-				<th>Date</th>
-				<th>Venue</th>
-				<th>Guest Artists</th>
-				<th>Online Sales</th>
+				<td>Performance Id</td>
+				<td>Name</td>
+				<td>Date</td>
+				<td>Venue</td>
+				<td>Guest Performers</td>
+				<td>Online Sales</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -32,8 +42,22 @@
 				die("Error: ".pg_last_error());
 			}
 
+			switch($sort) {
+				case "performance":
+					$filter = "ORDER BY Performance.name";
+					break;
+				case "date":
+					$filter = "ORDER BY Performance.performance_date";
+					break;
+				case "id":
+					$filter = "ORDER BY Performance.performance_id";
+					break;
+				default:
+					break;
+			}
+
 			// Define the SQL query to run (replace these values as well)
-			$sql = "SELECT * FROM Performance;";
+			$sql = "SELECT * FROM Performance " . $filter . ";";
 
 			// Run the SQL query
 			$result = pg_query($dbhost, $sql);
