@@ -1,5 +1,4 @@
 <html>
-	<form action="Index.php"><input type="submit" value="Home"/></form>
 	<head>
 		<title>Attendance</title>
 		<link rel="stylesheet" href="style.css">
@@ -119,5 +118,8 @@
 			?>
 		</tbody>
 		</table>
+		<form action="index.php" method="post">
+			<input type="submit" style="color:white;background-color:blue" value="Home"/>
+		</form>
 	</body>
 </html>
