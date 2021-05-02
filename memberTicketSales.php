@@ -12,15 +12,24 @@
 		<input type="submit" value="Sort">
 	</form>
 	<body>
+		<h2>Member Sales Log</h2>
+		<form name="sort" method="get">
+		<label for="sort"></label>
+		<select name="sort">
+			<option value="performance">Performance</option>
+			<option value="name">Member Name</option>
+		</select>
+		<input type="submit" value="Sort">
+		</form>
 		<table>
 		<thead>
 			<tr>
-				<th>Performance</th>
-				<th>Member</th>
-				<th>Tickets Given</th>
-				<th>Tickets Returned</th>
-				<th>Tickets Sold</th>
-				<th>Funds Collected</th>
+				<td>Performance</td>
+				<td>Member</td>
+				<td>Tickets Given</td>
+				<td>Tickets Returned</td>
+				<td>Tickets Sold</td>
+				<td>Funds Collected</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -40,6 +49,20 @@
 				die("Error: ".pg_last_error());
 			}
 			
+			$sort = $_GET['sort'];
+			$filter = "";
+
+			switch($sort) {
+				case "performance":
+					$filter = "ORDER BY Performance.name";
+					break;
+				case "name":
+					$filter = "ORDER BY Participant.last_name";
+					break;
+				default:
+					break;
+			}
+
 			$sort = $_GET['sort'];
 			$filter = "";
 
