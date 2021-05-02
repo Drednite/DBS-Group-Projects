@@ -13,14 +13,25 @@
 		<input type="submit" value="Sort">
 	</form>
 	<body>
+		<h2>Current Members</h2>
+		<form name="sort" method="get">
+		<label for="sort"></label>
+		<select name="sort">
+			<option value="first">First Name</option>
+			<option value="last">Last Name</option>
+			<option value="id">ID</option>
+			<option value="voice_part">Voice Part</option>
+		</select>
+		<input type="submit" value="Sort">
+	</form>
 		<table>
 		<thead>
 			<tr>
-				<th>Member Id</th>
-				<th>Last Name</th>
-				<th>First Name</th>
-				<th>Preferred Name</th>
-				<th>Voice Part</th>
+				<td>Member Id</td>
+				<td>Last Name</td>
+				<td>First Name</td>
+				<td>Preferred Name</td>
+				<td>Voice Part</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -52,6 +63,23 @@
 					break;
 				case "id":
 					$filter = "ORDER BY Participant.participant_id";
+					break;
+				default:
+					break;
+			}
+
+			switch($sort) {
+				case "first":
+					$filter = "ORDER BY Participant.first_name";
+					break;
+				case "last":
+					$filter = "ORDER BY Participant.last_name";
+					break;
+				case "id":
+					$filter = "ORDER BY Participant.participant_id";
+					break;
+				case "voice_part":
+					$filter = "ORDER BY Participant.voice_part";
 					break;
 				default:
 					break;
