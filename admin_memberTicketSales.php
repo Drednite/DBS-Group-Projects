@@ -1,4 +1,5 @@
 <html>
+	<form action="admin.php"><input type="submit" value="Admin Home"/></form>
 	<head>
 		<title>Admin: Member Sales</title>
 		<link rel="stylesheet" href="style.css">
