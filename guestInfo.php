@@ -4,18 +4,19 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<h2>Guest Info</h2>
 		<table>
 		<thead>
 			<tr>
-				<th>Participant Id</th>
-				<th>Name</th>
-				<th>Voice Part</th>
-				<th>Address</th>
-				<th>Phone</th>
-				<th>Email</th>
-				<th>Facebook</th>
-				<th>Birthdate</th>
-				<th>Spouse</th>
+				<td>Participant Id</td>
+				<td>Name</td>
+				<td>Voice Part</td>
+				<td>Address</td>
+				<td>Phone</td>
+				<td>Email</td>
+				<td>Facebook</td>
+				<td>Birthdate</td>
+				<td>Spouse</td>
 			</tr>
 		</thead>
 		<tbody>
