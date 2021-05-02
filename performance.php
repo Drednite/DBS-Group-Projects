@@ -1,27 +1,28 @@
 <html>
 	<head>
-		<title>Members</title>
+		<title>Performances</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
-	<form name="sort" method="get">
+	<body>
+		<h2>Performances</h2>
+		<form name="sort" method="get">
 		<label for="sort"></label>
 		<select name="sort">
-			<option value="performance">Performance</option>
+			<option value="name">Name</option>
 			<option value="date">Date</option>
-			<option value="id">Performance ID</option>
+			<option value="id">ID</option>
 		</select>
 		<input type="submit" value="Sort">
-	</form>
-	<body>
+		</form>
 		<table>
 		<thead>
 			<tr>
-				<th>Performance Id</th>
-				<th>Name</th>
-				<th>Date</th>
-				<th>Venue</th>
-				<th>Guest Artists</th>
-				<th>Online Sales</th>
+				<td>Performance Id</td>
+				<td>Name</td>
+				<td>Date</td>
+				<td>Venue</td>
+				<td>Guest Performers</td>
+				<td>Online Sales</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -40,9 +41,6 @@
 			{
 				die("Error: ".pg_last_error());
 			}
-			
-			$sort = $_GET['sort'];
-			$filter = "";
 
 			switch($sort) {
 				case "performance":
