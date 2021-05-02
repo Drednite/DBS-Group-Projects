@@ -1,4 +1,5 @@
 <html>
+	<form action="Index.php"><input type="submit" value="Home"/></form>
 	<head>
 		<title>Performances</title>
 		<link rel="stylesheet" href="style.css">
