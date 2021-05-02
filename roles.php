@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Roles</title>
+		<title>Board Members</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<form name="sort" method="get">
@@ -13,12 +13,22 @@
 		<input type="submit" value="Sort">
 	</form>
 	<body>
+		<h2>Board Members</h2>
+		<form name="sort" method="get">
+		<label for="sort"></label>
+		<select name="sort">
+			<option value="name">Name</option>
+			<option value="role">Role</option>
+			<option value="id">ID</option>
+		</select>
+		<input type="submit" value="Sort">
+	</form>
 		<table>
 		<thead>
 			<tr>
-				<th>Role</th>
-				<th>Member Id</th>
-				<th>Name</th>
+				<td>Role</td>
+				<td>Member Id</td>
+				<td>Name</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,6 +49,23 @@
 			}
 			
 			$sort = $_GET['sort'];
+			$filter = "";
+
+			switch($sort) {
+				case "name":
+					$filter = "ORDER BY Participant.first_name";
+					break;
+				case "role":
+					$filter = "ORDER BY Roles.name";
+					break;
+				case "id":
+					$filter = "ORDER BY Participant.participant_id";
+					break;
+				default:
+					break;
+			}
+
+$sort = $_GET['sort'];
 			$filter = "";
 
 			switch($sort) {
