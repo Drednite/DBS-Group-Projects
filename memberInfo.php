@@ -4,23 +4,24 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<h2>Member Info</h2>
 		<table>
 		<thead>
 			<tr>
-				<th>Member Id</th>
-				<th>Name</th>
-				<th>Voice Part</th>
-				<th>Address</th>
-				<th>Phone</th>
-				<th>Email</th>
-				<th>Facebook</th>
-				<th>Birthdate</th>
-				<th>Generation</th>
-				<th>Spouse</th>
-				<th>Arrangement</th>
-				<th>Vest Size</th>
-				<th>Youth Form</th>
-				<th>Roles</th>
+				<td>Member Id</td>
+				<td>Name</td>
+				<td>Voice Part</td>
+				<td>Address</td>
+				<td>Phone</td>
+				<td>Email</td>
+				<td>Facebook</td>
+				<td>Birthdate</td>
+				<td>Generation</td>
+				<td>Spouse</td>
+				<td>Arrangement</td>
+				<td>Vest Size</td>
+				<td>Youth Form</td>
+				<td>Roles</td>
 			</tr>
 		</thead>
 		<tbody>
