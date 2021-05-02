@@ -137,5 +137,8 @@
 			?>
 		</tbody>
 		</table>
+		<form action="admin.php" method="post">
+			<input type="submit" style="color:white;background-color:blue" value="Admin Home"/>
+		</form>
 	</body>
 </html>
