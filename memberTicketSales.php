@@ -7,9 +7,7 @@
 		<label for="sort"></label>
 		<select name="sort">
 			<option value="performance">Performance</option>
-			<option value="fname">Firt Name</option>
-			<option value="lname">Last Name</option>
-			<option value="pname">Preferred Name</option>
+			<option value="name">Member Name</option>
 		</select>
 		<input type="submit" value="Sort">
 	</form>
@@ -49,14 +47,8 @@
 				case "performance":
 					$filter = "ORDER BY Performance.name";
 					break;
-				case "fname":
-					$filter = "ORDER BY Participant.first_name";
-					break;
-				case "lname":
+				case "name":
 					$filter = "ORDER BY Participant.last_name";
-					break;
-				case "pname":
-					$filter = "ORDER BY Participant.preferred_name";
 					break;
 				default:
 					break;
