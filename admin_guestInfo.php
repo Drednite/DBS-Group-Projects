@@ -1,14 +1,14 @@
 <html>
 	<head>
-		<title>Member Info</title>
+		<title>Admin: Guest Info</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<h2>Member Info</h2>
+		<h2>Guest Info</h2>
 		<table>
 		<thead>
 			<tr>
-				<th>Member Id</th>
+				<th>Participant Id</th>
 				<th>Name</th>
 				<th>Voice Part</th>
 				<th>Address</th>
@@ -16,12 +16,7 @@
 				<th>Email</th>
 				<th>Facebook</th>
 				<th>Birthdate</th>
-				<th>Generation</th>
 				<th>Spouse</th>
-				<th>Arrangement</th>
-				<th>Vest Size</th>
-				<th>Youth Form</th>
-				<th>Roles</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,27 +29,24 @@
 			$my_password = fgets($myfile);
 			fclose($myfile);
 			$dbhost = pg_connect("host=" . $my_host . " dbname=" . $my_dbname . " user=" . $my_user . " password=" . $my_password);
-
+		
 			// If the $dbhost variable is not defined, there was an error
 			if(!$dbhost)
 			{
 				die("Error: ".pg_last_error());
 			}
 			
-			$member = $_GET['member'];
+			$guest = $_GET['guest'];
 
 			// Define the SQL query to run (replace these values as well)
-			$sql = "SELECT * FROM Participant INNER JOIN Member ON Participant.participant_id = Member.participant_id WHERE Member.member_id = $1;";
-			$sql2 = "SELECT * FROM Roles WHERE Roles.member_id = $1;";
+			$sql = "SELECT * FROM Participant WHERE Participant.participant_id = $1;";
 
 			// Run the SQL query
 			$result = pg_prepare($dbhost, "query", $sql);
-			$result2 = pg_prepare($dbhost, "query2", $sql2);
-			$result = pg_execute($dbhost, "query", array($member));
-			$result2 = pg_execute($dbhost, "query2", array($member));
+			$result = pg_execute($dbhost, "query", array($guest));
 
 			// If the $result variable is not defined, there was an error in the query
-			if (!$result || !$result2)
+			if (!$result)
 			{
 				die("Error in query: ".pg_last_error());
 			}
@@ -63,7 +55,7 @@
 			while ($row = pg_fetch_array($result))
 			{
 			echo "<tr>";
-				echo "<td>" . $row['member_id'] . "</td>";
+				echo "<td>" . $row['participant_id'] . "</td>";
 				echo "<td>" . $row['first_name'] . " \"" . $row['preferred_name'] . "\" " . $row['last_name'] . "</td>";
 				echo "<td>" . $row['voice_part'] . "</td>";
 				echo "<td>" . $row['street_address'] . "<br>" . $row['city'] . ", " . $row['state'] . " " . $row['zip'] . "</td>";
@@ -71,18 +63,7 @@
 				echo "<td>" . $row['email'] . "</td>";
 				echo "<td>" . $row['on_facebook'] . "</td>";
 				echo "<td>" . $row['birthdate'] . "</td>";
-				echo "<td>" . $row['generation'] . "</td>";
 				echo "<td>" . $row['spouse_first'] . " \"" . $row['spouse_preferred'] . "\" " . $row['spouse_last'] . "</td>";
-				echo "<td>" . $row['arrangement'] . "</td>";
-				echo "<td>" . $row['vest_size'] . "</td>";
-				echo "<td>" . $row['youth_form'] . "</td>";
-				echo "<td>";
-				while ($row2 = pg_fetch_array($result2))
-				{
-					echo $row2['name'] . "<br>";
-				}
-				echo "</td>";
-				pg_free_result($result2);
 			echo "</tr>";
 			}
 

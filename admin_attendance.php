@@ -1,23 +1,34 @@
 <html>
 	<head>
-		<title>Members</title>
+		<title>Admin: Attendance</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<h2>Current Members</h2>
+		<h2>Add Attendance Record</h2>
+		<form action="addAttendance.php" method="post">
+			<p>Date/Time: <input type="datetime-local" name="p_time"/></p>
+			<p><select name="idType">
+				<option value="Participant">Participant</option>
+				<option value="Member">Member</option>
+			</select>&emsp;
+			Id: <input type="text" name="id"/></p>
+			<input type="submit" value="Add"/>
+		</form>
+		<h2>Attendance Log</h2>
 		<form name="sort" method="get">
 		<label for="sort"></label>
 		<select name="sort">
-			<option value="first">First Name</option>
-			<option value="last">Last Name</option>
-			<option value="id">ID</option>
-			<option value="voice_part">Voice Part</option>
+			<option value="fname">First Name</option>
+			<option value="lname">Last Name</option>
+			<option value="pname">Preferred Name</option>
+			<option value="date">Date</option>
 		</select>
 		<input type="submit" value="Sort">
 	</form>
 		<table>
 		<thead>
 			<tr>
+				<th>Date</th>
 				<th>Member Id</th>
 				<th>Last Name</th>
 				<th>First Name</th>
@@ -41,43 +52,29 @@
 			{
 				die("Error: ".pg_last_error());
 			}
-			
+
 			$sort = $_GET['sort'];
 			$filter = "";
 
 			switch($sort) {
-				case "first":
+				case "fname":
 					$filter = "ORDER BY Participant.first_name";
 					break;
-				case "last":
+				case "lname":
 					$filter = "ORDER BY Participant.last_name";
 					break;
-				case "id":
-					$filter = "ORDER BY Participant.participant_id";
+				case "pname":
+					$filter = "ORDER BY Participant.preferred_name";
 					break;
-				default:
-					break;
-			}
-
-			switch($sort) {
-				case "first":
-					$filter = "ORDER BY Participant.first_name";
-					break;
-				case "last":
-					$filter = "ORDER BY Participant.last_name";
-					break;
-				case "id":
-					$filter = "ORDER BY Participant.participant_id";
-					break;
-				case "voice_part":
-					$filter = "ORDER BY Participant.voice_part";
+				case "date":
+					$filter = "ORDER BY Attendance.attend_date";
 					break;
 				default:
 					break;
 			}
 
 			// Define the SQL query to run (replace these values as well)
-			$sql = "SELECT * FROM Participant INNER JOIN Member ON Participant.participant_id = Member.participant_id " . $filter . ";";
+			$sql = "SELECT * FROM Attendance INNER JOIN Participant ON Attendance.participant_id = Participant.participant_id LEFT OUTER JOIN Member ON Participant.participant_id = Member.participant_id " . $filter . ";";
 
 			// Run the SQL query
 			$result = pg_query($dbhost, $sql);
@@ -92,11 +89,18 @@
 			while ($row = pg_fetch_array($result))
 			{
 			echo "<tr>";
-				echo "<td><a href=\"memberInfo.php?member=" . $row['member_id'] . "\">" . $row['member_id'] . "</a></td>";
+				echo "<td>" . date( "n/d/Y h:i:s A" , strtotime($row['attend_date']) ) . "</td>";
+				echo "<td><a href=\"admin_memberInfo.php?member=" . $row['member_id'] . "\">" . $row['member_id'] . "</a></td>";
 				echo "<td>" . $row['last_name'] . "</td>";
 				echo "<td>" . $row['first_name'] . "</td>";
 				echo "<td>" . $row['preferred_name'] . "</td>";
 				echo "<td>" . $row['voice_part'] . "</td>";
+				?>
+				<td><form action="deleteAttendance.php" method="post">
+					<input type="hidden" name="a_id" value="<?php echo $row['attendance_id']?>"/>
+					<input type="submit" style="color:white;background-color:red" value="Delete"/>
+				</form></td>
+				<?php
 			echo "</tr>";
 			}
 
@@ -108,8 +112,8 @@
 			?>
 		</tbody>
 		</table>
-		<form action="index.php" method="post">
-			<input type="submit" style="color:white;background-color:blue" value="Home"/>
+		<form action="admin.php" method="post">
+			<input type="submit" style="color:white;background-color:blue" value="Admin Home"/>
 		</form>
 	</body>
 </html>

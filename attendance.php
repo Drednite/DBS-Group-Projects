@@ -3,17 +3,17 @@
 		<title>Attendance</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
-	<form name="sort" method="get">
+	<body>
+		<h2>Attendance Log</h2>
+		<form name="sort" method="get">
 		<label for="sort"></label>
 		<select name="sort">
-			<option value="fname">First Name</option>
-			<option value="lname">Last Name</option>
-			<option value="pname">Preferred Name</option>
+			<option value="first">First Name</option>
+			<option value="last">Last Name</option>
 			<option value="date">Date</option>
 		</select>
 		<input type="submit" value="Sort">
-	</form>
-	<body>
+		</form>
 		<table>
 		<thead>
 			<tr>
@@ -46,14 +46,28 @@
 			$filter = "";
 
 			switch($sort) {
-				case "fname":
+				case "first":
 					$filter = "ORDER BY Participant.first_name";
 					break;
-				case "lname":
+				case "last":
 					$filter = "ORDER BY Participant.last_name";
 					break;
-				case "pname":
-					$filter = "ORDER BY Participant.preferred_name";
+				case "date":
+					$filter = "ORDER BY Attendance.attend_date";
+					break;
+				default:
+					break;
+			}
+
+			$sort = $_GET['sort'];
+			$filter = "";
+
+			switch($sort) {
+				case "first":
+					$filter = "ORDER BY Participant.first_name";
+					break;
+				case "last":
+					$filter = "ORDER BY Participant.last_name";
 					break;
 				case "date":
 					$filter = "ORDER BY Attendance.attend_date";
@@ -95,5 +109,8 @@
 			?>
 		</tbody>
 		</table>
+		<form action="index.php" method="post">
+			<input type="submit" style="color:white;background-color:blue" value="Home"/>
+		</form>
 	</body>
 </html>

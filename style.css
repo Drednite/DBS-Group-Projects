@@ -7,10 +7,6 @@ th{
     background-color: rgb(207, 207, 207);
 }
 
-tr{
-    border-bottom: 1px solid black;
-}
-
 tr:nth-child(even){
     background-color: gainsboro;
 }
