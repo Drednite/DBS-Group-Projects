@@ -8,7 +8,9 @@
 		<form name="sort" method="get">
 		<label for="sort"></label>
 		<select name="sort">
-			<option value="name">Name</option>
+			<option value="fname">First Name</option>
+			<option value="lname">Last Name</option>
+			<option value="pname">Preferred Name</option>
 			<option value="role">Role</option>
 			<option value="id">ID</option>
 		</select>
@@ -38,30 +40,19 @@
 			{
 				die("Error: ".pg_last_error());
 			}
-			
+
 			$sort = $_GET['sort'];
 			$filter = "";
 
 			switch($sort) {
-				case "name":
+				case "fname":
 					$filter = "ORDER BY Participant.first_name";
 					break;
-				case "role":
-					$filter = "ORDER BY Roles.name";
+				case "lname":
+					$filter = "ORDER BY Participant.last_name";
 					break;
-				case "id":
-					$filter = "ORDER BY Participant.participant_id";
-					break;
-				default:
-					break;
-			}
-
-$sort = $_GET['sort'];
-			$filter = "";
-
-			switch($sort) {
-				case "name":
-					$filter = "ORDER BY Participant.first_name";
+				case "pname":
+					$filter = "ORDER BY Participant.preferred_name";
 					break;
 				case "role":
 					$filter = "ORDER BY Roles.name";
