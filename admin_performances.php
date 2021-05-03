@@ -1,19 +1,32 @@
 <html>
 	<head>
-		<title>Performances</title>
+		<title>Admin: Performances</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<h2>Add Performance</h2>
+		<form action="addPerformance.php" method="post">
+			<p>Performance Id: <input type="text" name="perf_id"/></p>
+			<p>Date/Time: <input type="datetime-local" name="p_time"/></p>
+			<p>Name: <input type="text" name="name"/></p>
+			<p>Venue Name: <input type="text" name="v_name"/></p>
+			<p>Street: <input type="text" name="street"/></p>
+			<p>City: <input type="text" name="city"/></p>
+			<p>State: <input type="text" name="state"/></p>
+			<p>Zip: <input type="text" name="zip"/></p>
+			<p>Online Sales? <input type="checkbox" name="o_sales"/>Yes</p>
+			<input type="submit" value="Add"/>
+		</form>
 		<h2>Performances</h2>
 		<form name="sort" method="get">
 		<label for="sort"></label>
 		<select name="sort">
-			<option value="name">Name</option>
+			<option value="performance">Performance</option>
 			<option value="date">Date</option>
-			<option value="id">ID</option>
+			<option value="id">Performance ID</option>
 		</select>
 		<input type="submit" value="Sort">
-		</form>
+	</form>
 		<table>
 		<thead>
 			<tr>
@@ -41,23 +54,6 @@
 			{
 				die("Error: ".pg_last_error());
 			}
-			
-			$sort = $_GET['sort'];
-			$filter = "";
-
-			switch($sort) {
-				case "performance":
-					$filter = "ORDER BY Performance.name";
-					break;
-				case "date":
-					$filter = "ORDER BY Performance.performance_date";
-					break;
-				case "id":
-					$filter = "ORDER BY Performance.performance_id";
-					break;
-				default:
-					break;
-			}
 
 			switch($sort) {
 				case "performance":
@@ -75,7 +71,6 @@
 
 			// Define the SQL query to run (replace these values as well)
 			$sql = "SELECT * FROM Performance " . $filter . ";";
-
 			// Run the SQL query
 			$result = pg_query($dbhost, $sql);
 
@@ -134,6 +129,16 @@
 				pg_free_result($result2);
 				echo "</td>";
 				echo "<td>" . $row['online_sales'] . "</td>";
+				?>
+				<td><form action="updatePerformance.php" method="post">
+					<input type="hidden" name="perf_id" value="<?php echo $row['performance_id']?>"/>
+					<input type="submit" style="color:white;background-color:green" value="Update"/>
+				</form></td>
+				<td><form action="deletePerformance.php" method="post">
+					<input type="hidden" name="perf_id" value="<?php echo $row['performance_id']?>"/>
+					<input type="submit" style="color:white;background-color:red" value="Delete"/>
+				</form></td>
+				<?php
 			echo "</tr>";
 			}
 
@@ -145,8 +150,8 @@
 			?>
 		</tbody>
 		</table>
-		<form action="index.php" method="post">
-			<input type="submit" style="color:white;background-color:blue" value="Home"/>
+		<form action="admin.php" method="post">
+			<input type="submit" style="color:white;background-color:blue" value="Admin Home"/>
 		</form>
 	</body>
 </html>

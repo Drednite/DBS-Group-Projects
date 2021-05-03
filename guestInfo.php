@@ -4,6 +4,7 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<h2>Guest Info</h2>
 		<table>
 		<thead>
 			<tr>

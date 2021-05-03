@@ -1,19 +1,8 @@
 <html>
-	<head>
-		<title>Performances</title>
-		<link rel="stylesheet" href="style.css">
-	</head>
+<title>Admin: Update Record</title>
+<link rel="stylesheet" href="style.css">
 	<body>
-		<h2>Performances</h2>
-		<form name="sort" method="get">
-		<label for="sort"></label>
-		<select name="sort">
-			<option value="name">Name</option>
-			<option value="date">Date</option>
-			<option value="id">ID</option>
-		</select>
-		<input type="submit" value="Sort">
-		</form>
+		<h2>Current Record</h2>
 		<table>
 		<thead>
 			<tr>
@@ -22,6 +11,7 @@
 				<th>Date</th>
 				<th>Venue</th>
 				<th>Guest Performers</th>
+				<th></th>
 				<th>Online Sales</th>
 			</tr>
 		</thead>
@@ -41,43 +31,15 @@
 			{
 				die("Error: ".pg_last_error());
 			}
-			
-			$sort = $_GET['sort'];
-			$filter = "";
 
-			switch($sort) {
-				case "performance":
-					$filter = "ORDER BY Performance.name";
-					break;
-				case "date":
-					$filter = "ORDER BY Performance.performance_date";
-					break;
-				case "id":
-					$filter = "ORDER BY Performance.performance_id";
-					break;
-				default:
-					break;
-			}
-
-			switch($sort) {
-				case "performance":
-					$filter = "ORDER BY Performance.name";
-					break;
-				case "date":
-					$filter = "ORDER BY Performance.performance_date";
-					break;
-				case "id":
-					$filter = "ORDER BY Performance.performance_id";
-					break;
-				default:
-					break;
-			}
+			$perf_id = $_POST['perf_id'];
 
 			// Define the SQL query to run (replace these values as well)
-			$sql = "SELECT * FROM Performance " . $filter . ";";
+			$sql = "SELECT * FROM Performance WHERE Performance.performance_id = $1;";
 
 			// Run the SQL query
-			$result = pg_query($dbhost, $sql);
+			$result = pg_prepare($dbhost, "query", $sql);
+			$result = pg_execute($dbhost, "query", array($perf_id));
 
 			// If the $result variable is not defined, there was an error in the query
 			if (!$result)
@@ -130,8 +92,17 @@
 						echo "&emsp;" . $row3['first_name'] . " \"" . $row3['preferred_name'] . "\" " . $row3['last_name'] . "<br>";
 					}
 					pg_free_result($result3);
+
+					?>
+					<form action="deletePerformanceGuestConnection.php" method="post">
+					<input type="hidden" name="star_id" value="<?php echo $row2['starring_id']?>"/>
+					<input type="hidden" name="perf_id" value="<?php echo $perf_id ?>"/>
+					<input type="submit" style="color:white;background-color:green" value="Remove Group"/>
+					</form>
+					<?php
 				}
 				pg_free_result($result2);
+
 				echo "</td>";
 				echo "<td>" . $row['online_sales'] . "</td>";
 			echo "</tr>";
@@ -145,8 +116,14 @@
 			?>
 		</tbody>
 		</table>
-		<form action="index.php" method="post">
-			<input type="submit" style="color:white;background-color:blue" value="Home"/>
+		<form action="admin_performances.php">
+			<input type="submit" value="Done"/>
+		</form>
+		<h2>Add Guest Performer</h2>
+		<form action="addPerformanceGuestConnection.php" method="post">
+			<input type="hidden" name="perf_id" value="<?php echo $perf_id ?>"/>
+			<p>Guest Id: <input type="text" name="guest_id"/></p>
+			<input type="submit" value="Add"/>
 		</form>
 	</body>
 </html>

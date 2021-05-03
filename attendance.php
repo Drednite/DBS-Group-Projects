@@ -3,7 +3,9 @@
 		<title>Attendance</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
-	<form name="sort" method="get">
+	<body>
+		<h2>Attendance Log</h2>
+		<form name="sort" method="get">
 		<label for="sort"></label>
 		<select name="sort">
 			<option value="first">First Name</option>
@@ -11,8 +13,7 @@
 			<option value="date">Date</option>
 		</select>
 		<input type="submit" value="Sort">
-	</form>
-	<body>
+		</form>
 		<table>
 		<thead>
 			<tr>
@@ -41,6 +42,23 @@
 				die("Error: ".pg_last_error());
 			}
 			
+			$sort = $_GET['sort'];
+			$filter = "";
+
+			switch($sort) {
+				case "first":
+					$filter = "ORDER BY Participant.first_name";
+					break;
+				case "last":
+					$filter = "ORDER BY Participant.last_name";
+					break;
+				case "date":
+					$filter = "ORDER BY Attendance.attend_date";
+					break;
+				default:
+					break;
+			}
+
 			$sort = $_GET['sort'];
 			$filter = "";
 
@@ -91,5 +109,8 @@
 			?>
 		</tbody>
 		</table>
+		<form action="index.php" method="post">
+			<input type="submit" style="color:white;background-color:blue" value="Home"/>
+		</form>
 	</body>
 </html>

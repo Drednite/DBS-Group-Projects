@@ -1,14 +1,22 @@
 <html>
 	<head>
-		<title>Board Members</title>
+		<title>Admin: Board Members</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<h2>Add Role</h2>
+		<form action="addRoles.php" method="post">
+			<p>Member Id: <input type="text" name="m_id"/></p>
+			<p>Role: <input type="text" name="name"/></p>
+			<input type="submit" value="Add"/>
+		</form>
 		<h2>Board Members</h2>
 		<form name="sort" method="get">
 		<label for="sort"></label>
 		<select name="sort">
-			<option value="name">Name</option>
+			<option value="fname">First Name</option>
+			<option value="lname">Last Name</option>
+			<option value="pname">Preferred Name</option>
 			<option value="role">Role</option>
 			<option value="id">ID</option>
 		</select>
@@ -38,30 +46,16 @@
 			{
 				die("Error: ".pg_last_error());
 			}
-			
-			$sort = $_GET['sort'];
-			$filter = "";
 
 			switch($sort) {
-				case "name":
+				case "fname":
 					$filter = "ORDER BY Participant.first_name";
 					break;
-				case "role":
-					$filter = "ORDER BY Roles.name";
+				case "lname":
+					$filter = "ORDER BY Participant.last_name";
 					break;
-				case "id":
-					$filter = "ORDER BY Participant.participant_id";
-					break;
-				default:
-					break;
-			}
-
-$sort = $_GET['sort'];
-			$filter = "";
-
-			switch($sort) {
-				case "name":
-					$filter = "ORDER BY Participant.first_name";
+				case "pname":
+					$filter = "ORDER BY Participant.preferred_name";
 					break;
 				case "role":
 					$filter = "ORDER BY Roles.name";
@@ -90,8 +84,14 @@ $sort = $_GET['sort'];
 			{
 			echo "<tr>";
 				echo "<td>" . $row['name'] . "</td>";
-				echo "<td><a href=\"memberInfo.php?member=" . $row['member_id'] . "\">" . $row['member_id'] . "</a></td>";
+				echo "<td><a href=\"admin_memberInfo.php?member=" . $row['member_id'] . "\">" . $row['member_id'] . "</a></td>";
 				echo "<td>" . $row['first_name'] . " \"" . $row['preferred_name'] . "\" " . $row['last_name'] . "</td>";
+				?>
+				<td><form action="deleteRoles.php" method="post">
+					<input type="hidden" name="r_id" value="<?php echo $row['role_id']?>"/>
+					<input type="submit" style="color:white;background-color:red" value="Delete"/>
+				</form></td>
+				<?php
 			echo "</tr>";
 			}
 
@@ -103,8 +103,8 @@ $sort = $_GET['sort'];
 			?>
 		</tbody>
 		</table>
-		<form action="index.php" method="post">
-			<input type="submit" style="color:white;background-color:blue" value="Home"/>
+		<form action="admin.php" method="post">
+			<input type="submit" style="color:white;background-color:blue" value="Admin Home"/>
 		</form>
 	</body>
 </html>

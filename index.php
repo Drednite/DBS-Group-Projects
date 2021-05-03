@@ -10,5 +10,7 @@
 		<form action="attendance.php"><input type="submit" value="Attendance"/></form>
 		<form action="memberTicketSales.php"><input type="submit" value="Member Ticket Sales"/></form>
 		<form action="performance.php"><input type="submit" value="Performances"/></form>
+		<br><br>
+		<form action="admin.php"><input type="submit" style="color:white;background-color:red" value="Admin"/></form>
 	</body>
 </html>
