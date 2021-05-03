@@ -40,25 +40,8 @@
 			{
 				die("Error: ".pg_last_error());
 			}
-			
+
 			$sort = $_GET['sort'];
-			$filter = "";
-
-			switch($sort) {
-				case "name":
-					$filter = "ORDER BY Participant.first_name";
-					break;
-				case "role":
-					$filter = "ORDER BY Roles.name";
-					break;
-				case "id":
-					$filter = "ORDER BY Participant.participant_id";
-					break;
-				default:
-					break;
-			}
-
-$sort = $_GET['sort'];
 			$filter = "";
 
 			switch($sort) {
