@@ -9,7 +9,7 @@
 		<label for="sort"></label>
 		<select name="sort">
 			<option value="performance">Performance</option>
-			<option value="fname">Firt Name</option>
+			<option value="fname">First Name</option>
 			<option value="lname">Last Name</option>
 			<option value="pname">Preferred Name</option>
 		</select>
