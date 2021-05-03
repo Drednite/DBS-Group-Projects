@@ -63,23 +63,6 @@
 					break;
 			}
 
-			switch($sort) {
-				case "first":
-					$filter = "ORDER BY Participant.first_name";
-					break;
-				case "last":
-					$filter = "ORDER BY Participant.last_name";
-					break;
-				case "id":
-					$filter = "ORDER BY Participant.participant_id";
-					break;
-				case "voice_part":
-					$filter = "ORDER BY Participant.voice_part";
-					break;
-				default:
-					break;
-			}
-
 			// Define the SQL query to run (replace these values as well)
 			$sql = "SELECT * FROM Participant INNER JOIN Member ON Participant.participant_id = Member.participant_id " . $filter . ";";
 
