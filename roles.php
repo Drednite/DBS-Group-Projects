@@ -8,7 +8,9 @@
 		<form name="sort" method="get">
 		<label for="sort"></label>
 		<select name="sort">
-			<option value="name">Name</option>
+			<option value="fname">First Name</option>
+			<option value="lname">Last Name</option>
+			<option value="pname">Preferred Name</option>
 			<option value="role">Role</option>
 			<option value="id">ID</option>
 		</select>
@@ -60,8 +62,14 @@ $sort = $_GET['sort'];
 			$filter = "";
 
 			switch($sort) {
-				case "name":
+				case "fname":
 					$filter = "ORDER BY Participant.first_name";
+					break;
+				case "lname":
+					$filter = "ORDER BY Participant.last_name";
+					break;
+				case "pname":
+					$filter = "ORDER BY Participant.preferred_name";
 					break;
 				case "role":
 					$filter = "ORDER BY Roles.name";
