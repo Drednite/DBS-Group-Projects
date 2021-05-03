@@ -6,9 +6,8 @@
 	<form name="sort" method="get">
 		<label for="sort"></label>
 		<select name="sort">
-			<option value="fname">First Name</option>
-			<option value="lname">Last Name</option>
-			<option value="pname">Preferred Name</option>
+			<option value="first">First Name</option>
+			<option value="last">Last Name</option>
 		</select>
 		<input type="submit" value="Sort">
 	</form>
@@ -44,14 +43,11 @@
 			$filter = "";
 
 			switch($sort) {
-				case "fname":
+				case "first":
 					$filter = "ORDER BY Participant.first_name";
 					break;
-				case "lname":
+				case "last":
 					$filter = "ORDER BY Participant.last_name";
-					break;
-				case "pname":
-					$filter = "ORDER BY Participant.preferred_name";
 					break;
 				default:
 					break;
