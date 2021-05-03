@@ -29,12 +29,12 @@
 		<table>
 		<thead>
 			<tr>
-				<td>Performance</td>
-				<td>Member</td>
-				<td>Tickets Given</td>
-				<td>Tickets Returned</td>
-				<td>Tickets Sold</td>
-				<td>Funds Collected</td>
+				<th>Performance</th>
+				<th>Member</th>
+				<th>Tickets Given</th>
+				<th>Tickets Returned</th>
+				<th>Tickets Sold</th>
+				<th>Funds Collected</th>
 			</tr>
 		</thead>
 		<tbody>

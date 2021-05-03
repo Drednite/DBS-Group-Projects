@@ -53,12 +53,12 @@
 		<table>
 		<thead>
 			<tr>
-				<td>Member Id</td>
-				<td>Last Name</td>
-				<td>First Name</td>
-				<td>Preferred Name</td>
-				<td>Voice Part</td>
-				<td></td>
+				<th>Member Id</th>
+				<th>Last Name</th>
+				<th>First Name</th>
+				<th>Preferred Name</th>
+				<th>Voice Part</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>

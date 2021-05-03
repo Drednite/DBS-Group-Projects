@@ -3,15 +3,6 @@
 		<title>Attendance</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
-	<form name="sort" method="get">
-		<label for="sort"></label>
-		<select name="sort">
-			<option value="first">First Name</option>
-			<option value="last">Last Name</option>
-			<option value="date">Date</option>
-		</select>
-		<input type="submit" value="Sort">
-	</form>
 	<body>
 		<h2>Attendance Log</h2>
 		<form name="sort" method="get">
@@ -26,12 +17,12 @@
 		<table>
 		<thead>
 			<tr>
-				<td>Date</td>
-				<td>Member Id</td>
-				<td>Last Name</td>
-				<td>First Name</td>
-				<td>Preferred Name</td>
-				<td>Voice Part</td>
+				<th>Date</th>
+				<th>Member Id</th>
+				<th>Last Name</th>
+				<th>First Name</th>
+				<th>Preferred Name</th>
+				<th>Voice Part</th>
 			</tr>
 		</thead>
 		<tbody>

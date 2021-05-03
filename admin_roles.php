@@ -25,9 +25,9 @@
 		<table>
 		<thead>
 			<tr>
-				<td>Role</td>
-				<td>Member Id</td>
-				<td>Name</td>
+				<th>Role</th>
+				<th>Member Id</th>
+				<th>Name</th>
 			</tr>
 		</thead>
 		<tbody>

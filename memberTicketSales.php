@@ -3,14 +3,6 @@
 		<title>Member Sales</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
-	<form name="sort" method="get">
-		<label for="sort"></label>
-		<select name="sort">
-			<option value="performance">Performance</option>
-			<option value="name">Member Name</option>
-		</select>
-		<input type="submit" value="Sort">
-	</form>
 	<body>
 		<h2>Member Sales Log</h2>
 		<form name="sort" method="get">
@@ -24,12 +16,12 @@
 		<table>
 		<thead>
 			<tr>
-				<td>Performance</td>
-				<td>Member</td>
-				<td>Tickets Given</td>
-				<td>Tickets Returned</td>
-				<td>Tickets Sold</td>
-				<td>Funds Collected</td>
+				<th>Performance</th>
+				<th>Member</th>
+				<th>Tickets Given</th>
+				<th>Tickets Returned</th>
+				<th>Tickets Sold</th>
+				<th>Funds Collected</th>
 			</tr>
 		</thead>
 		<tbody>

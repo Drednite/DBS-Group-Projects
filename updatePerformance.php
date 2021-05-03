@@ -6,13 +6,13 @@
 		<table>
 		<thead>
 			<tr>
-				<td>Performance Id</td>
-				<td>Name</td>
-				<td>Date</td>
-				<td>Venue</td>
-				<td>Guest Performers</td>
-				<td></td>
-				<td>Online Sales</td>
+				<th>Performance Id</th>
+				<th>Name</th>
+				<th>Date</th>
+				<th>Venue</th>
+				<th>Guest Performers</th>
+				<th></th>
+				<th>Online Sales</th>
 			</tr>
 		</thead>
 		<tbody>

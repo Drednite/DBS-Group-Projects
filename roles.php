@@ -3,15 +3,6 @@
 		<title>Board Members</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
-	<form name="sort" method="get">
-		<label for="sort"></label>
-		<select name="sort">
-			<option value="name">Name</option>
-			<option value="role">Role</option>
-			<option value="id">ID</option>
-		</select>
-		<input type="submit" value="Sort">
-	</form>
 	<body>
 		<h2>Board Members</h2>
 		<form name="sort" method="get">
@@ -26,9 +17,9 @@
 		<table>
 		<thead>
 			<tr>
-				<td>Role</td>
-				<td>Member Id</td>
-				<td>Name</td>
+				<th>Role</th>
+				<th>Member Id</th>
+				<th>Name</th>
 			</tr>
 		</thead>
 		<tbody>

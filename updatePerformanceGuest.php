@@ -6,9 +6,9 @@
 		<table>
 		<thead>
 			<tr>
-				<td>Guest Id</td>
-				<td>Group Name</td>
-				<td>Members</td>
+				<th>Guest Id</th>
+				<th>Group Name</th>
+				<th>Members</th>
 			</tr>
 		</thead>
 		<tbody>
