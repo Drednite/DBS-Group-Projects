@@ -59,20 +59,6 @@
 					break;
 			}
 
-			switch($sort) {
-				case "performance":
-					$filter = "ORDER BY Performance.name";
-					break;
-				case "date":
-					$filter = "ORDER BY Performance.performance_date";
-					break;
-				case "id":
-					$filter = "ORDER BY Performance.performance_id";
-					break;
-				default:
-					break;
-			}
-
 			// Define the SQL query to run (replace these values as well)
 			$sql = "SELECT * FROM Performance " . $filter . ";";
 
